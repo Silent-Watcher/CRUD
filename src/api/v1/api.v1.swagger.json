@@ -1,0 +1,42 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CRUD",
+    "description": "CRUD API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "backendwithali@gmail.com",
+      "name": "Ali nazari"
+    }
+  },
+  "components": {
+    "schemas": {
+      "successResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "number", "example": 200 },
+          "code": { "type": "number", "example": "OK" },
+          "message": { "type": "string", "example": "success!" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "checks if the server is running correctly",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/successResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

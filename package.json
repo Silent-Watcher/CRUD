@@ -1,0 +1,49 @@
+{
+  "scripts": {
+    "serve": "bun --env-file=.env.local --watch src/primary.ts --minify",
+    "build": "bun build src/primary.ts --outdir ./dist --minify --splitting --target node --external mongoose",
+    "prestart": "bun run build",
+    "start": "bun ./dist/primary.js",
+    "format": "bunx biome format --write .",
+    "lint": "bunx biome lint --write .",
+    "check": "bunx biome check --write .",
+    "husky": "bun .husky/install.mjs",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage",
+    "prepare": "husky",
+    "commit": "cz"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "compression": "^1.7.4",
+    "express": "^4.21.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-rate-limit": "^7.4.0",
+    "http-status": "^1.7.4",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0",
+    "morgan": "^1.10.0",
+    "swagger-themes": "^1.4.3",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.14.2",
+    "zod": "^3.23.8",
+    "zod-validation-error": "^3.4.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.2",
+    "@types/compression": "^1.7.5",
+    "@types/express-ejs-layouts": "^2.5.4",
+    "@types/jest": "^29.5.13",
+    "@types/swagger-ui-express": "^4.1.6",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.6",
+    "jest": "^29.7.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
