@@ -359,6 +359,32 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "update the status",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": " Numeric ID of the task to update"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/successResponse"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

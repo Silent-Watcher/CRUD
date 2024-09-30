@@ -4,6 +4,7 @@ import httpStatus from 'http-status';
 import { userMessages } from '../user/user.messages';
 import userService from '../user/user.service';
 import { taskMessages } from './task.messages';
+import { taskModel } from './task.model';
 import taskService from './task.service';
 
 import type { Request, Response, NextFunction } from 'express';
@@ -91,6 +92,32 @@ class TaskController extends Controller {
           code: 'CREATED',
           message: taskMessages.created,
         });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const task = await taskModel.findById(id, { isDone: 1 });
+      if (task) {
+        task.isDone = task.isDone ? false : true;
+		await task.save()
+        res.status(httpStatus.OK).send({
+          status: res.statusCode,
+          code: 'OK',
+          message: 'updated successfully',
+        });
+        return;
+      } else {
+        res.status(httpStatus.NOT_FOUND).send({
+          status: res.statusCode,
+          code: 'NOT FOUND ',
+          message: 'task not found',
+        });
+        return;
       }
     } catch (error) {
       next(error);

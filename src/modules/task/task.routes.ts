@@ -17,4 +17,6 @@ router.post(
   taskController.create,
 );
 
+router.put('/:id', taskController.update);
+
 export default router;
