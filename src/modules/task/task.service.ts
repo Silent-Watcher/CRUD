@@ -41,7 +41,7 @@ class TaskService extends Controller {
         message: taskMessages.duplicateTitleValue,
       };
 
-	return taskModel.create(taskDto);
+    return taskModel.create(taskDto);
   }
 
   async checkIfTheTaskTitleIsDuplicated(title: string) {

@@ -1,5 +1,5 @@
 import { removeEmptyValues } from '$app/common/middlewares/omitEmpty.middleware';
-import { validateBody, validateParams } from '$app/common/validation/dataValidator';
+import { validateBody } from '$app/common/validation/dataValidator';
 import { zTask } from '$app/common/validation/schema/task.schema';
 import { Router } from 'express';
 

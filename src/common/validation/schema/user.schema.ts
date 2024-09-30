@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 export const zUser = z
   .object({
-    id: z.union([z.instanceof(Types.ObjectId) , z.string()]).optional(),
+    id: z.union([z.instanceof(Types.ObjectId), z.string()]).optional(),
     displayName: z.string().trim().optional(),
     email: z.string().trim().email('invalid email format!'),
     password: z

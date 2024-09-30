@@ -19,7 +19,6 @@ class TaskController extends Controller {
   async getAll(req: Request, res: Response, next: NextFunction) {
     try {
       const tasks = await this.service.getAll(req?.user?.['_id']);
-	  console.log('tasks: ', tasks);
       res.status(httpStatus.OK).send({
         status: res.statusCode,
         code: 'OK',
@@ -28,7 +27,6 @@ class TaskController extends Controller {
       });
       return;
     } catch (error) {
-		console.log(error);
       next(error);
     }
   }
@@ -87,13 +85,13 @@ class TaskController extends Controller {
       }
       const result = await this.service.create(taskDto);
 
-	  if(result){
-		res.status(httpStatus.CREATED).send({
-			status: res.statusCode,
-			code : 'CREATED',
-			message: taskMessages.created
-		})
-	  }
+      if (result) {
+        res.status(httpStatus.CREATED).send({
+          status: res.statusCode,
+          code: 'CREATED',
+          message: taskMessages.created,
+        });
+      }
     } catch (error) {
       next(error);
     }
