@@ -9,10 +9,10 @@ const userMongo = new Schema(
   { timestamps: true, versionKey: false },
 );
 
-userMongo.virtual('tasks', {
-  ref: 'task',
-  localField: '_id',
-  foreignField: 'user',
-});
+// userMongo.virtual('tasks', {
+//   ref: 'task',
+//   localField: '_id',
+//   foreignField: 'user',
+// });
 
 export const userModel = model('user', userMongo);

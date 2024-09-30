@@ -37,6 +37,14 @@
           }
         }
       },
+      "taskInput": {
+        "type": "object",
+        "required": ["title", "user"],
+        "properties": {
+          "title": { "type": "string", "example": "study" },
+          "user": { "type": "string" }
+        }
+      },
       "loginUserInput": {
         "type": "object",
         "required": ["email", "password"],
@@ -118,28 +126,32 @@
           }
         }
       },
-	  "tasks":{
-		"type":"array",
-		"items":{
-			"type": "object",
-		"properties": {
-		  "title": {
-			"type": "string",
-			"example": "study"
-		  },
-		  "isDone": {
-			"type": "boolean",
-			"example": "false"
-		  }
-		}
-		}
-	  }
+      "task": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "study"
+          },
+          "isDone": {
+            "type": "boolean",
+            "example": "false"
+          }
+        }
+      },
+      "tasks": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/task"
+        }
+      },
+      "createTask": {}
     }
   },
   "paths": {
     "/health": {
       "get": {
-		"tags":["Server"],
+        "tags": ["Server"],
         "summary": "checks if the server is running correctly",
         "responses": {
           "200": {
@@ -283,7 +295,65 @@
             "content": {
               "application/json": {
                 "schema": {
-					"$ref":"#/components/schemas/tasks"
+                  "$ref": "#/components/schemas/tasks"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "create a new task",
+        "tags": ["Tasks"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/taskInput"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/taskInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/successResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "delete": {
+        "summary": "remove an existing task",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": " Numeric ID of the task to get"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/successResponse"
                 }
               }
             }

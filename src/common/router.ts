@@ -24,7 +24,7 @@ router.use('/auth', authRouter);
 
 router.use('/user', checkIfTheUserVerified, userRouter);
 
-router.use('/tasks' , checkIfTheUserVerified , taskRouter )
+router.use('/tasks', checkIfTheUserVerified, taskRouter);
 
 export function startRouter(app: Application) {
   app.use(router);
