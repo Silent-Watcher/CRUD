@@ -104,7 +104,7 @@ class TaskController extends Controller {
       const task = await taskModel.findById(id, { isDone: 1 });
       if (task) {
         task.isDone = task.isDone ? false : true;
-		await task.save()
+        await task.save();
         res.status(httpStatus.OK).send({
           status: res.statusCode,
           code: 'OK',
