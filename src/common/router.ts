@@ -1,5 +1,6 @@
 import { checkIfTheUserVerified } from '$guards/auth.guard';
 import authRouter from '$modules/auth/auth.routes';
+import taskRouter from '$modules/task/task.routes';
 import userRouter from '$modules/user/user.routes';
 import { Router } from 'express';
 import httpStatus from 'http-status';
@@ -22,6 +23,8 @@ router.get('/health', (_req: Request, res: Response, next: NextFunction) => {
 router.use('/auth', authRouter);
 
 router.use('/user', checkIfTheUserVerified, userRouter);
+
+router.use('/tasks' , checkIfTheUserVerified , taskRouter )
 
 export function startRouter(app: Application) {
   app.use(router);

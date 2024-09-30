@@ -52,7 +52,7 @@ class AuthService extends Controller {
 
   async isEmailAlreadyExists(email: string) {
     const foundedUser = await userModel
-      .findOne({ email }, { _id: 1, email: 1 , password:1 })
+      .findOne({ email }, { _id: 1, email: 1, password: 1 })
       .lean();
     return foundedUser === null ? false : foundedUser;
   }

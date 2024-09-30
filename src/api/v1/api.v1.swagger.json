@@ -117,12 +117,29 @@
             "example": "user id"
           }
         }
-      }
+      },
+	  "tasks":{
+		"type":"array",
+		"items":{
+			"type": "object",
+		"properties": {
+		  "title": {
+			"type": "string",
+			"example": "study"
+		  },
+		  "isDone": {
+			"type": "boolean",
+			"example": "false"
+		  }
+		}
+		}
+	  }
     }
   },
   "paths": {
     "/health": {
       "get": {
+		"tags":["Server"],
         "summary": "checks if the server is running correctly",
         "responses": {
           "200": {
@@ -249,6 +266,24 @@
                       "$ref": "#/components/schemas/user"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "summary": "list of user tasks ",
+        "description": "returns the list of defined tasks by loggedIn user",
+        "tags": ["Tasks"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+					"$ref":"#/components/schemas/tasks"
                 }
               }
             }

@@ -23,10 +23,7 @@ function handleExceptions(
     if (err instanceof Error) {
       const error = err as Error & { status?: number; code?: string | number };
       res
-        .status(
-          (error.status as number)||
-            httpStatus.INTERNAL_SERVER_ERROR,
-        )
+        .status((error.status as number) || httpStatus.INTERNAL_SERVER_ERROR)
         .send({
           status: res.statusCode,
           error: {

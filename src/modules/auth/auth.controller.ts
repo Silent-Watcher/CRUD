@@ -74,7 +74,6 @@ class AuthController extends Controller {
         });
       return;
     } catch (error) {
-		console.log(error);
       next(error);
     }
   }
