@@ -1,7 +1,7 @@
+import logger from '$configs/logger.config';
 import cluster from 'cluster';
 import os from 'os';
 import path from 'path';
-import logger from '$configs/logger.config';
 import { cwd } from 'process';
 
 const cpuCores = os.cpus().length;
