@@ -1,7 +1,9 @@
+import { Types } from 'mongoose';
 import { z } from 'zod';
 
 export const zUser = z
   .object({
+    _id: z.instanceof(Types.ObjectId),
     displayName: z.string().trim().optional(),
     email: z.string().trim().email('invalid email format!'),
     password: z

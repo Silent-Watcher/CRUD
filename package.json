@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "serve": "bun --env-file=.env.local --watch src/primary.ts --minify",
     "build": "bun build src/primary.ts --outdir ./dist --minify --splitting --target node --external mongoose",
@@ -17,10 +18,14 @@
   "dependencies": {
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
+    "auto-bind": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
     "express": "^4.21.0",
     "express-ejs-layouts": "^2.5.1",
     "express-rate-limit": "^7.4.0",
+    "http-errors": "^2.0.0",
     "http-status": "^1.7.4",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.0",
@@ -34,9 +39,13 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/bun": "^1.1.10",
     "@types/compression": "^1.7.5",
+    "@types/cookie-parser": "^1.4.7",
     "@types/express-ejs-layouts": "^2.5.4",
     "@types/jest": "^29.5.13",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/omit-empty": "^1.0.3",
     "@types/swagger-ui-express": "^4.1.6",
     "cz-conventional-changelog": "^3.3.0",

@@ -38,12 +38,15 @@
       "$modules/*": ["./src/modules/*"],
       "$middlewares/*": ["./src/common/middlewares/*"],
       "$utils/*": ["./src/common/utils/*"],
+      "$guards/*": ["./src/common/guards/*"],
       "$configs/*": ["./src/configs/*"],
+      "$validation/*": ["./src/common/validation/*"],
+      "$interfaces/*": ["./src/common/interfaces/*"],
       "$api/*": ["./src/api/*"]
     },
 
     "typeRoots": ["./src/common/@types/**", "./node_modules/@types/"],
-    "types": ["jest", "node"]
+    "types": ["jest", "node", "bun"]
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules/"]

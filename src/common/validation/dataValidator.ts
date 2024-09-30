@@ -1,38 +1,48 @@
 import type { ZodSchema } from 'zod';
 import type { Response, Request, NextFunction } from 'express';
-import httpStatus from 'http-status';
+import httpErrors from 'http-errors';
 import { fromZodError } from 'zod-validation-error';
 
-function validate<T, U>(scheme: ZodSchema<T>, data: U, res: Response) {
+export function validate<T, U>(scheme: ZodSchema<T>, data: U) {
   const validationResult = scheme.safeParse(data);
   if (!validationResult.success) {
-    return res.status(httpStatus.NOT_ACCEPTABLE).send({
-      status: res.statusCode,
-      error: {
-        code: 'NOT ACCEPTABLE',
-        message: fromZodError(validationResult.error).toString(),
-      },
-    });
+    throw new httpErrors.NotAcceptable(
+      fromZodError(validationResult.error).toString(),
+    );
+  } else {
+    return;
   }
 }
 
 export function validateBody<T>(schema: ZodSchema<T>) {
-  return (req: Request, res: Response, next: NextFunction) => {
-    validate(schema, req.body, res);
-    next();
+  return (req: Request, _res: Response, next: NextFunction) => {
+    try {
+      validate(schema, req.body);
+      next();
+    } catch (error) {
+      next(error);
+    }
   };
 }
 
 export function validateParams<T>(schema: ZodSchema<T>) {
-  return (req: Request, res: Response, next: NextFunction) => {
-    validate(schema, req.params, res);
-    next();
+  return (req: Request, _res: Response, next: NextFunction) => {
+    try {
+      validate(schema, req.params);
+      next();
+    } catch (error) {
+      next(error);
+    }
   };
 }
 
 export function validateQuery<T>(schema: ZodSchema<T>) {
-  return (req: Request, res: Response, next: NextFunction) => {
-    validate(schema, req.query, res);
-    next();
+  return (req: Request, _res: Response, next: NextFunction) => {
+    try {
+      validate(schema, req.query);
+      next();
+    } catch (error) {
+      next(error);
+    }
   };
 }

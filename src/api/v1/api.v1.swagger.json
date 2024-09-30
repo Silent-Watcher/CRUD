@@ -19,7 +19,7 @@
           "message": { "type": "string", "example": "success!" }
         }
       },
-	  "registerUserInput": {
+      "registerUserInput": {
         "type": "object",
         "required": ["email", "password", "confirmPassword"],
         "properties": {
@@ -28,7 +28,7 @@
             "example": "backendwithali@gmail.com"
           },
           "password": {
-            "type": "number",
+            "type": "string",
             "example": "should be at least 8 chars"
           },
           "confirmPassword": {
@@ -46,7 +46,7 @@
             "example": "backendwithali@gmail.com"
           },
           "password": {
-            "type": "number",
+            "type": "string",
             "example": "should be at least 8 chars"
           }
         }
@@ -64,7 +64,7 @@
           },
           "message": {
             "type": "string",
-            "example": "user registered successfully"
+            "example": "registered successfully , please login!"
           },
           "user": {
             "$ref": "#/components/schemas/user"
@@ -85,6 +85,36 @@
           "message": {
             "type": "string",
             "example": "loggedIn successfully"
+          }
+        }
+      },
+      "logoutSuccessfully": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": 200
+          },
+          "code": {
+            "type": "string",
+            "example": "OK"
+          },
+          "message": {
+            "type": "string",
+            "example": "logout successfully"
+          }
+        }
+      },
+      "user": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "backendwithali@gmail.com"
+          },
+          "_id": {
+            "type": "string",
+            "example": "user id"
           }
         }
       }
@@ -142,6 +172,7 @@
     "/auth/login": {
       "post": {
         "summary": "login an existing user",
+        "description": "a cookie sent to your browser and that's it. no more pain sending token to me!!",
         "tags": ["Authentication"],
         "requestBody": {
           "required": true,
@@ -164,6 +195,60 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/loggedInSuccessfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "summary": "logout an existing user",
+        "description": "i will remove your access_token cookie",
+        "tags": ["Authentication"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/logoutSuccessfully"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/whoami": {
+      "get": {
+        "summary": "return info about loggedIn user",
+        "description": "check you login status with this end-point",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "code": {
+                      "type": "string",
+                      "example": "OK"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "hello user"
+                    },
+                    "user": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
                 }
               }
             }

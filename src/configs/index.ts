@@ -25,4 +25,13 @@ export const CONFIGS = Object.freeze({
     NAME: env.APP_NAME,
     URL: env.APP_URL,
   },
+  JWT: {
+    SECRET: env.JWT_SECRET,
+  },
+  COOKIE: {
+    SECRET: env.COOKIE_SECRET,
+  },
+  _1DAY: {
+    ms: 24 * 3600 * 1000,
+  },
 });

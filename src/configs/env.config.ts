@@ -18,6 +18,9 @@ const environmentSchema = z.object({
 
   DB_NAME: z.string(),
   DB_URL: z.string(),
+
+  JWT_SECRET: z.string(),
+  COOKIE_SECRET: z.string(),
 });
 
 const envParsedResult = environmentSchema.safeParse(process.env);

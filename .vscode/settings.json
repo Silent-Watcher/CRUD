@@ -8,13 +8,20 @@
     "**/Thumbs.db": true,
     "**/node_modules": true
   },
-  "cSpell.words": ["bunx", "openapi", "outdir", "prestart", "virtuals"],
+  "cSpell.words": [
+    "biomejs",
+    "bunx",
+    "openapi",
+    "outdir",
+    "prestart",
+    "virtuals"
+  ],
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true
   },
   "triggerTaskOnSave.tasks": {
-    "restart backend": ["src/**/*"]
+    "restart backend": ["./src/**/*"]
   },
   "typescript.tsdk": "node_modules\\typescript\\lib"
 }
